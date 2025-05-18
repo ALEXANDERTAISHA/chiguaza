@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class EmpresaController extends Controller
 {
@@ -40,7 +41,9 @@ class EmpresaController extends Controller
         }
         
         if($request->logo){
-            $path = $request->logo->storeAs('public/logo', now().'.'.$request->logo->extension());
+            $random = Str::random(6);
+            $path = $request->logo->storeAs('public/logo', $random.'.'.$request->logo->extension());
+
             $empresa->logo=$path;
             $empresa->save();
         }

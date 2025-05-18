@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Autoridad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AutoridadController extends Controller
 {
@@ -29,6 +30,7 @@ class AutoridadController extends Controller
      */
     public function store(Request $request)
     {
+        
         $au=Autoridad::first();
         if(!$au){
             $au=Autoridad::create($request->all());
@@ -36,13 +38,15 @@ class AutoridadController extends Controller
             $au->update($request->all());
         }
         if($request->foto){
-            $path = $request->foto->storeAs('public/autoridad/foto', now().'.'.$request->foto->extension());
+            $random1 = Str::random(6);
+            $path = $request->foto->storeAs('public/autoridad/foto', $random1.'.'.$request->foto->extension());
             $au->foto=$path;
             $au->save();
         }
 
         if($request->foto2){
-            $path = $request->foto2->storeAs('public/autoridad/foto2', now().'.'.$request->foto2->extension());
+            $random2 = Str::random(6);
+            $path = $request->foto2->storeAs('public/autoridad/foto2', $random2.'.'.$request->foto2->extension());
             $au->foto2=$path;
             $au->save();
         }
