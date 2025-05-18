@@ -7,12 +7,13 @@ use App\Models\Archivo;
 use App\Models\Noticia;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class WelcomeController extends Controller
 {
     //
     public function index() {
-        // Artisan::call('cache:clear');
+        //Artisan::call('cache:clear');
         // Artisan::call('config:clear');
         // Artisan::call('config:cache');
         // Artisan::call('storage:link');
