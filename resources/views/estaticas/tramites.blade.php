@@ -1,32 +1,36 @@
 @extends('layouts.cliente')
 @section('content')
-    <section class="page-header">
-        <div class="page-header-bg" style="background-image: url({{ asset('assets/images/autoridades1/vocal.png') }})"></div>
+    <style>
+        .page-hero{ min-height:420px; padding:80px 0; }
+        .page-hero .lead{ max-width:620px; }
+        .hero-card{ position:relative; top:0; right:0; }
+        @media (max-width: 991px){
+            .page-hero{ padding:60px 0; min-height:360px; }
+            .page-hero .display-3{ font-size:2.2rem; }
+        }
+    </style>
+    <section class="page-hero d-flex align-items-center" style="background-image: linear-gradient(120deg, rgba(8,38,71,0.6), rgba(2,44,93,0.35)), url({{ asset('assets/images/autoridades1/vocal.png') }}); background-size: cover; background-position: center;">
         <div class="container">
-            <div class="page-header__inner">
-                <div class="row align-items-end gy-4">
-                    <div class="col-lg-8">
-                        <span class="badge rounded-pill bg-light text-primary px-3 py-2 mb-3">Portal de transparencia</span>
-                        <h1 class="text-white">{{ $titulo ?? config('app.name') }}</h1>
-                        <p class="text-white-50 mb-0">Acceda a la información institucional, documentos y archivos públicos organizados por categorías para una consulta ágil, clara y segura.</p>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <div class="rounded-4 p-4 text-white" style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);">
-                            <div class="small text-uppercase fw-semibold">Gestión 2023-2027</div>
-                            <div class="h4 mb-0">{{ $carpeta->nombre ?? 'Transparencia' }}</div>
-                        </div>
+            <div class="row align-items-center">
+                <div class="col-lg-7 text-white">
+                    <span class="badge rounded-pill bg-white text-primary px-3 py-2 mb-3">Portal de transparencia</span>
+                    <h1 class="display-3 fw-bold mb-3">{{ $titulo ?? config('app.name') }}</h1>
+                    <p class="lead text-white-75 mb-4">Acceda a la información institucional y documentos públicos organizados por categorías. Navegación clara, segura y con acceso directo a descargas y visualizadores.</p>
+                    <a href="#secciones" class="btn btn-lg btn-primary rounded-pill me-2">Ver secciones</a>
+                    <a href="{{ route('contactos') }}" class="btn btn-lg btn-outline-light rounded-pill">Contacto</a>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="hero-card p-4 rounded-4 shadow" style="background: rgba(255,255,255,0.06); backdrop-filter: blur(6px);">
+                        <div class="small text-uppercase text-white-50">Gestión</div>
+                        <div class="display-5 text-white fw-semibold">2023 - 2027</div>
+                        <div class="mt-3 text-white-50">{{ $carpeta->nombre ?? 'Transparencia' }}</div>
                     </div>
                 </div>
-                <ul class="thm-breadcrumb list-unstyled mt-4">
-                    <li><a href="{{ route('welcome') }}">Inicio</a></li>
-                    <li><span>/</span></li>
-                    <li>2023-2027</li>
-                </ul>
             </div>
         </div>
     </section>
 
-    <section class="py-5 bg-light">
+    <section id="secciones" class="py-5 bg-light">
         <div class="container">
             <div class="row g-4 align-items-stretch">
                 <div class="col-lg-4">
