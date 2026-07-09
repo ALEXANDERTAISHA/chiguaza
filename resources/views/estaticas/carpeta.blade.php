@@ -3,7 +3,7 @@
         @if ($carpeta->carpetas->count() > 0)
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm sticky-top" style="top: 90px;">
+                    <div class="card border-0 shadow-sm sidebar-card">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center gap-2 text-primary mb-3">
                                 <i class="fa fa-folder-open"></i>
@@ -93,6 +93,19 @@
         transform: translateY(-2px);
         transition: 0.2s ease;
     }
+    .service-details .sidebar-card {
+        position: sticky;
+        top: 90px;
+        z-index: 5;
+    }
+
+    @media (max-width: 991px) {
+        .service-details .sidebar-card {
+            position: static;
+            top: auto;
+        }
+    }
+
 </style>
 
 <!-- Modal PDF Viewer -->
