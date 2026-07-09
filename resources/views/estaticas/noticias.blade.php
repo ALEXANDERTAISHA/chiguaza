@@ -30,13 +30,24 @@
         <!--News Page Start-->
         <section class="news-page">
             <div class="container">
+                <style>
+                    .news-one__single{ display:flex; flex-direction:column; height:100%; border-radius:12px; overflow:hidden; background:#fff; transition: transform .18s ease, box-shadow .18s ease; }
+                    .news-one__single:hover{ transform: translateY(-8px); box-shadow: 0 20px 40px rgba(2,24,58,0.08); }
+                    .news-one__img img{ width:100%; height:260px; object-fit:cover; display:block; }
+                    .news-page .row > [class*="col-"]{ display:flex; }
+                    .news-one__content{ display:flex; flex-direction:column; padding:20px; }
+                    .news-one__btn{ margin-top:auto; }
+                </style>
+
                 <div class="row">
                     @foreach ($noticias as $no)
                     <div class="col-xl-4 col-lg-4">
                         <div class="news-one__single">
                             <div class="news-one__img-box">
                                 <div class="news-one__img">
-                                    <img src="{{ Storage::url($no->foto) }}" alt="">
+                                    <a href="{{ Storage::url($no->foto) }}" class="news-lightbox">
+                                        <img src="{{ Storage::url($no->foto) }}" alt="">
+                                    </a>
                                 </div>
                                 <div class="news-one__date">
                                     <p>{{ $no->created_at->format('Y-m-d') }}</p>
@@ -78,4 +89,11 @@
             </div>
         </section>
         <!--News Page End-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                if (window.jQuery && jQuery.magnificPopup) {
+                    jQuery('.news-lightbox').magnificPopup({ type: 'image', gallery: { enabled: true } });
+                }
+            });
+        </script>
 @endsection
