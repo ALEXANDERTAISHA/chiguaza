@@ -27,11 +27,13 @@
                 {{ $slot }}
             </div>
         </div>
-+        <style>
-+            .auth-card .underline { color:#2563eb !important; }
-+            .auth-card p, .auth-card label, .auth-card span, .auth-card h1, .auth-card h2, .auth-card h3, .auth-card h4, .auth-card h5, .auth-card h6 { color:#0f172a !important; }
-+            .auth-card input[type="email"], .auth-card input[type="password"] { color:#0f172a !important; }
-+            .auth-card input:placeholder { color:#6b7280 !important; }
-+        </style>
+        <style>
+            .auth-card .underline { color:#1d4ed8 !important; }
+            .auth-card p, .auth-card label, .auth-card span, .auth-card h1, .auth-card h2, .auth-card h3, .auth-card h4, .auth-card h5, .auth-card h6 { color:#0f172a !important; }
+            .auth-card input[type="email"], .auth-card input[type="password"] { color:#0f172a !important; }
+            .auth-card input::placeholder { color:#6b7280 !important; }
+            .auth-card button[type="submit"] { background-color: #0f172a !important; color: #f8fafc !important; border-color: transparent !important; }
+            .auth-card button[type="submit"]:hover { background-color: #111827 !important; }
+        </style>
     </body>
 </html>
