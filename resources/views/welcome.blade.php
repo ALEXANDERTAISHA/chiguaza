@@ -48,7 +48,7 @@
                 </div>
                 <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:1rem; flex:1; overflow:auto; padding-bottom:0.5rem;">
                     @foreach ($archivos->sortByDesc('created_at')->take(12) as $ar)
-                    <a target="_blank" href="{{ Storage::url($ar->url) }}" style="display:flex; align-items:center; gap:0.95rem; padding:1.1rem 1.25rem; border-radius:22px; background:#f8fafc; border:1px solid rgba(15,23,42,0.08); text-decoration:none; color:#0f172a; transition: transform .18s ease, box-shadow .18s ease;">
+                    <a href="#" class="ver-pdf-btn" data-pdf="{{ Storage::url($ar->url) }}" data-nombre="{{ Str::limit($ar->nombre, 58, '...') }}" style="display:flex; align-items:center; gap:0.95rem; padding:1.1rem 1.25rem; border-radius:22px; background:#f8fafc; border:1px solid rgba(15,23,42,0.08); text-decoration:none; color:#0f172a; transition: transform .18s ease, box-shadow .18s ease;">
                         <span style="flex-shrink:0; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:16px; background:rgba(16,185,129,0.14); color:#047857; font-size:1rem;"><i class="fas fa-file-pdf"></i></span>
                         <span style="display:block; font-size:0.95rem; font-weight:700; line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ Str::limit($ar->nombre, 58, '...') }}</span>
                     </a>
@@ -59,6 +59,55 @@
     </div>
 </section>
 <!--Services One End-->
+
+<!-- Modal PDF Viewer -->
+<div class="modal fade" id="pdfViewerModal" tabindex="-1" aria-labelledby="pdfViewerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width:1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfViewerModalLabel">Documento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9" style="min-height:70vh;">
+                    <iframe src="" frameborder="0" class="w-100 h-100" aria-label="Visor PDF"></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-outline-secondary" id="pdfDownloadBtn" target="_blank">Descargar</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var modalEl = document.getElementById('pdfViewerModal');
+        if (!modalEl || typeof bootstrap === 'undefined') return;
+        var modal = new bootstrap.Modal(modalEl);
+        var iframe = modalEl.querySelector('iframe');
+        var titleEl = modalEl.querySelector('.modal-title');
+        var downloadBtn = document.getElementById('pdfDownloadBtn');
+
+        document.querySelectorAll('.ver-pdf-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (event) {
+                event.preventDefault();
+                var url = btn.getAttribute('data-pdf');
+                var nombre = btn.getAttribute('data-nombre') || 'Documento';
+                if (!url) return;
+                iframe.src = url;
+                titleEl.textContent = nombre;
+                if (downloadBtn) downloadBtn.href = url;
+                modal.show();
+            });
+        });
+
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            iframe.src = '';
+        });
+    });
+</script>
 
 <!--quejas sugerencias-->
 @include('sections.quejassugerencias',['autoridad'=>$autoridad])
