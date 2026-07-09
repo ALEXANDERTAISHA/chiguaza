@@ -15,8 +15,8 @@
         
         <!-- Scripts -->
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.16), transparent 24%), radial-gradient(circle at 85% 20%, rgba(14,165,233,0.14), transparent 22%), linear-gradient(180deg, #020617 0%, #0f172a 100%); color: #0f172a;">
+    <body class="font-sans text-gray-100 antialiased">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06), transparent 24%), radial-gradient(circle at 85% 20%, rgba(255,255,255,0.04), transparent 22%), linear-gradient(180deg, #2b3138 0%, #181b20 100%); color: #f8fafc;">
             <div class="mb-6">
                 <a href="/">
                     <x-application-logo class="w-120 h-20 fill-current text-white" />
