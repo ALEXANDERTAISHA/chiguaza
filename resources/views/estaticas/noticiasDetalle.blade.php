@@ -68,22 +68,7 @@
                             {!! $noticia->detalle !!}
                         </div>
 
-                        @if(isset($related) && $related->count())
-                        <div class="related-news" style="margin-top:22px;">
-                            <h5>Noticias relacionadas</h5>
-                            <ul class="list-unstyled">
-                                @foreach($related as $r)
-                                <li style="display:flex; gap:10px; margin-bottom:12px;">
-                                    <div style="width:70px; flex:0 0 70px;"><a href="{{ route('noticiasDetalle',$r->id) }}"><img src="{{ Storage::url($r->foto) }}" style="width:70px;height:50px;object-fit:cover;border-radius:6px;"></a></div>
-                                    <div>
-                                        <a href="{{ route('noticiasDetalle',$r->id) }}">{{ Str::limit($r->titulo,70) }}</a>
-                                        <div class="text-muted" style="font-size:12px;">{{ $r->created_at->format('Y-m-d') }}</div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
+                        {{-- related news removed per request --}}
 
                     </div>
                 </div>
