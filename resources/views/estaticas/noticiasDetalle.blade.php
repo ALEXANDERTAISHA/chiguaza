@@ -23,34 +23,41 @@
             <div class="row">
                 <div class="col-xl-8 col-lg-8">
                     <div class="news-details__left">
-                        <div class="news-details__img-box">
-                            <div class="news-details__img">
-                                <img src="{{ Storage::url($noticia->foto) }}" alt="">
+                        <style>
+                            .news-detail-card{ background:#ffffff; border-radius:14px; padding:28px; box-shadow:0 12px 30px rgba(2,24,58,0.06); }
+                            .news-details__img img{ width:100%; height:480px; object-fit:cover; border-radius:10px; display:block; }
+                            .news-detail-meta{ display:flex; gap:18px; align-items:center; color:#6b7280; margin-bottom:14px; }
+                            .news-detail-meta .author{ font-weight:600; color:#0b2e66; }
+                            .news-details__date p{ background:linear-gradient(90deg,#0d6efd,#6c63ff); color:#fff; display:inline-block; padding:8px 12px; border-radius:8px; }
+                            .news-details__title-1 p{ font-size:28px; font-weight:700; color:#06203a; margin-bottom:18px; }
+                            @media(max-width:767px){ .news-details__img img{ height:240px; } }
+                        </style>
+
+                        <div class="news-detail-card">
+                            <div class="news-details__img-box">
+                                <div class="news-details__img">
+                                    <a href="{{ Storage::url($noticia->foto) }}" class="news-detail-lightbox">
+                                        <img src="{{ Storage::url($noticia->foto) }}" alt="{{ $noticia->titulo }}">
+                                    </a>
+                                </div>
+                                <div class="news-details__date">
+                                    <p>{{ $noticia->created_at->format('Y-m-d') }}</p>
+                                </div>
                             </div>
-                            <div class="news-details__date">
-                                <p>{{ $noticia->created_at->format('Y-m-d') }}</p>
-                                
+
+                            <div class="text-justify news-details__content">
+                                <div class="news-detail-meta">
+                                    <div class="author">{{ $noticia->user->name }}</div>
+                                </div>
+                                <h3 class="news-details__title-1">
+                                    <p>{{ $noticia->titulo }}</p>
+                                </h3>
+
+                                <div class="news-details__body">
+                                    {!! $noticia->detalle !!}
+                                </div>
                             </div>
                         </div>
-                        <div class="text-justify news-details__content">
-                            <ul class="news-details__meta list-unstyled">
-                                <li>
-                                    <div class="icon">
-                                        <span class="fas fa-user-circle"></span>
-                                    </div>
-                                    <div class="text-justify">
-                                        <p>{{ $noticia->user->name }}</p>
-                                    </div>
-                                </li>
-                                
-                            </ul>
-                            <h3 class="news-details__title-1">
-                                <p>{{ $noticia->titulo }}</p>
-                            </h3>
-                            {!! $noticia->detalle !!}
-                        </div>
-                       
-                       
                     </div>
                 </div>
               
@@ -58,4 +65,11 @@
         </div>
     </section>
     <!--News Details End-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.jQuery && jQuery.magnificPopup) {
+                jQuery('.news-detail-lightbox').magnificPopup({ type: 'image', gallery: { enabled: true } });
+            }
+        });
+    </script>
 @endsection
