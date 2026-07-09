@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="d-flex gap-2">
-                    <a href="{{ route('descargarArchivo', $ar->id) }}" class="btn btn-sm btn-primary rounded-pill">Ver PDF</a>
+                    <button type="button" class="btn btn-sm btn-primary rounded-pill ver-pdf-btn" data-pdf="{{ Storage::url($ar->url) }}" data-nombre="{{ $ar->nombre }}">Ver PDF</button>
                     <a href="{{ route('descargarArchivoDownload', $ar->id) }}" class="btn btn-sm btn-outline-secondary rounded-pill">Descargar</a>
                 </div>
             </div>

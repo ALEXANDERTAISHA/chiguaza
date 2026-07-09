@@ -94,3 +94,50 @@
         transition: 0.2s ease;
     }
 </style>
+
+<!-- Modal PDF Viewer -->
+<div class="modal fade" id="pdfViewerModal" tabindex="-1" aria-labelledby="pdfViewerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width:1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfViewerModalLabel">Documento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9" style="min-height:70vh;">
+                    <iframe src="" frameborder="0" class="w-100 h-100" aria-label="Visor PDF"></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-outline-secondary" id="pdfDownloadBtn" target="_blank">Descargar</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var modalEl = document.getElementById('pdfViewerModal');
+        if (!modalEl) return;
+        var modal = new bootstrap.Modal(modalEl);
+        var iframe = modalEl.querySelector('iframe');
+        var titleEl = modalEl.querySelector('.modal-title');
+        var downloadBtn = document.getElementById('pdfDownloadBtn');
+
+        document.querySelectorAll('.ver-pdf-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var url = btn.getAttribute('data-pdf');
+                var nombre = btn.getAttribute('data-nombre') || 'Documento';
+                iframe.src = url;
+                titleEl.textContent = nombre;
+                if (downloadBtn) downloadBtn.href = url;
+                modal.show();
+            });
+        });
+
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            iframe.src = '';
+        });
+    });
+</script>
