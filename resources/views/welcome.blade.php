@@ -62,14 +62,14 @@
 
 <!-- Modal PDF Viewer -->
 <div class="modal fade" id="pdfViewerModal" tabindex="-1" aria-labelledby="pdfViewerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width:900px;">
+    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width:1200px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="pdfViewerModalLabel">Documento</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-0">
-                <div class="ratio ratio-4x3" style="min-height:60vh;">
+                <div class="ratio ratio-16x9" style="min-height:70vh;">
                     <iframe src="" frameborder="0" class="w-100 h-100" aria-label="Visor PDF"></iframe>
                 </div>
             </div>
