@@ -16,14 +16,14 @@
         <!-- Scripts -->
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.16), transparent 24%), radial-gradient(circle at 85% 20%, rgba(14,165,233,0.14), transparent 22%), linear-gradient(180deg, #020617 0%, #0f172a 100%);">
+            <div class="mb-6">
                 <a href="/">
-                    <x-application-logo class="w-120 h-20 fill-current text-gray-500" />
+                    <x-application-logo class="w-120 h-20 fill-current text-white" />
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white/95 shadow-xl shadow-slate-900/20 backdrop-blur-sm overflow-hidden sm:rounded-3xl">
                 {{ $slot }}
             </div>
         </div>
