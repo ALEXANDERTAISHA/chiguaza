@@ -36,10 +36,19 @@
 
             <div class="news-detail-row">
                 <div class="news-detail-left">
-                    <div class="img-wrap">
+                    <div class="img-wrap" style="position:relative;">
                         <a href="{{ Storage::url($noticia->foto) }}" class="news-detail-lightbox">
                             <img src="{{ Storage::url($noticia->foto) }}" alt="{{ $noticia->titulo }}">
                         </a>
+                        <div class="hero-overlay" style="position:absolute;left:28px;top:40px;color:#fff;">
+                            <div style="font-size:96px;font-weight:700;line-height:0.9;text-shadow:0 6px 18px rgba(0,0,0,0.45);">{{ $noticia->created_at->format('Y') }}</div>
+                            <div style="margin-top:10px;max-width:520px;color:rgba(255,255,255,0.9);font-size:16px;">Acceda a la información institucional y documentos públicos organizados por categorías.</div>
+                        </div>
+                        <div class="hero-card" style="position:absolute;right:20px;bottom:40px;background:rgba(10,20,36,0.55);backdrop-filter:blur(6px);padding:28px;border-radius:8px;color:#fff;min-width:260px;">
+                            <div style="opacity:0.8;font-size:12px;">GESTIÓN</div>
+                            <div style="font-size:36px;font-weight:600;margin-top:6px;">2023 - 2027</div>
+                            <div style="opacity:0.7;margin-top:6px;">{{ $noticia->created_at->format('Y') }}</div>
+                        </div>
                     </div>
                     <div style="margin-top:12px;">
                         <div class="news-details__date">
@@ -68,22 +77,7 @@
                             {!! $noticia->detalle !!}
                         </div>
 
-                        @if(isset($related) && $related->count())
-                        <div class="related-news" style="margin-top:22px;">
-                            <h5>Noticias relacionadas</h5>
-                            <ul class="list-unstyled">
-                                @foreach($related as $r)
-                                <li style="display:flex; gap:10px; margin-bottom:12px;">
-                                    <div style="width:70px; flex:0 0 70px;"><a href="{{ route('noticiasDetalle',$r->id) }}"><img src="{{ Storage::url($r->foto) }}" style="width:70px;height:50px;object-fit:cover;border-radius:6px;"></a></div>
-                                    <div>
-                                        <a href="{{ route('noticiasDetalle',$r->id) }}">{{ Str::limit($r->titulo,70) }}</a>
-                                        <div class="text-muted" style="font-size:12px;">{{ $r->created_at->format('Y-m-d') }}</div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
+                        {{-- Related news removed per design preference --}}
 
                     </div>
                 </div>
