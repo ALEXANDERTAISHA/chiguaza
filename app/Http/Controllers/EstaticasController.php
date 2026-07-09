@@ -104,8 +104,10 @@ class EstaticasController extends Controller
 
     public function noticiasDetalle($id)  {
         $not=Noticia::where(['id'=>$id,'vista'=>'SI'])->firstOrFail();
+        $related = Noticia::where('vista','SI')->where('id','!=',$id)->latest()->take(3)->get();
         $data = array(
-            'noticia'=>$not
+            'noticia'=>$not,
+            'related'=>$related
         );
         return view('estaticas.noticiasDetalle',$data);
     }
