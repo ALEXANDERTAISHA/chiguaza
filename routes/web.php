@@ -50,7 +50,8 @@ Route::get('/rioandrentza', [WelcomeController::class,'rioandrentza'])->name('ri
 Route::get('/lagunamarianita', [WelcomeController::class,'lagunamarianita'])->name('lagunamarianita');
 Route::get('/cavernaanaconda', [WelcomeController::class,'cavernaanaconda'])->name('cavernaanaconda');
 
-Route::get('/descargar-archivo/{id}',[EstaticasController::class,'descargarArchivo'])->name('descargarArchivo');
+Route::get('/ver-archivo/{id}',[EstaticasController::class,'verArchivo'])->name('descargarArchivo');
+Route::get('/descargar-archivo/{id}',[EstaticasController::class,'descargarArchivo'])->name('descargarArchivoDownload');
 Route::get('/tramites',[EstaticasController::class,'tramites'])->name('tramites');
 Route::get('/transparencia/{id}',[EstaticasController::class,'carpeta'])->name('transparencia');
 Route::get('/rendicion-de-cuentas/{id}',[EstaticasController::class,'carpeta'])->name('rendicionCuentas');

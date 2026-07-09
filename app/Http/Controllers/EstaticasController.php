@@ -26,9 +26,19 @@ class EstaticasController extends Controller
         return view('estaticas.tramites',$data);
     }
 
+    public function verArchivo($id) {
+        $arc = Archivo::findOrFail($id);
+        $pdfUrl = Storage::disk('public')->url($arc->url);
+
+        return view('estaticas.visor-pdf', [
+            'archivo' => $arc,
+            'pdfUrl' => $pdfUrl,
+        ]);
+    }
+
     public function descargarArchivo($id) {
-        $arc=Archivo::find($id);
-        return Storage::download($arc->url, $arc->nombre.'.pdf');
+        $arc = Archivo::findOrFail($id);
+        return Storage::disk('public')->download($arc->url, $arc->nombre);
     }
 
     public function carpeta($id) {
