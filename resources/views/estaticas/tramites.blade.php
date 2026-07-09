@@ -4,6 +4,12 @@
         .page-hero{ min-height:420px; padding:80px 0; }
         .page-hero .lead{ max-width:620px; }
         .hero-card{ position:relative; top:0; right:0; }
+        .page-hero .display-3,
+        .page-hero h1,
+        .page-hero .display-5 {
+            color: #fff !important;
+            text-shadow: 0 6px 18px rgba(0,0,0,0.55);
+        }
         @media (max-width: 991px){
             .page-hero{ padding:60px 0; min-height:360px; }
             .page-hero .display-3{ font-size:2.2rem; }
