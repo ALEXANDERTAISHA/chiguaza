@@ -144,156 +144,58 @@
         @yield('content')
 
         <!--Site Footer Start-->
-        <footer class="site-footer">
-            <div class="site-footer__img">
-                <img src="{{ asset('assets/images/resources/site-footer-img.jpg') }}" alt="">
-            </div>
-            <div class="container">
-                <div class="site-footer__top">
-                    <div class="footer-widget__logo">
-                        <a href="{{ url('/') }}">
-                            <img src="{{ Storage::url($empresah->logo) }}" alt="" width="95px" height="45px"></a>
-                    </div>
-                    <div class="footer-widget__subscribe-box">
-                        <div class="footer-widget__subscribe-text">
-                            <p>Gad parroquial Chiguaza</p>
+        <footer class="site-footer bg-dark text-light" style="background: linear-gradient(180deg,#0b1220,#0d0f14);">
+            <div class="container py-5">
+                <div class="row gy-4 align-items-start">
+                    <div class="col-lg-4">
+                        <a href="{{ url('/') }}" class="d-inline-block mb-3">
+                            <img src="{{ Storage::url($empresah->logo) }}" alt="Logo" style="height:60px;" />
+                        </a>
+                        <p class="text-muted small">GAD Parroquial Chiguaza - Promoviendo transparencia y servicio público.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><i class="fa fa-envelope me-2 text-primary"></i><a class="text-muted" href="mailto:{{ $empresah->email }}">{{ $empresah->email }}</a></li>
+                            <li class="mb-2"><i class="fa fa-phone me-2 text-primary"></i><span class="text-muted">{{ $empresah->telefono }}</span></li>
+                        </ul>
+                        <div class="mt-3">
+                            <a href="{{ $empresah->facebook }}" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="{{ $empresah->twitter }}" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="{{ $empresah->instagram }}" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="fab fa-instagram"></i></a>
                         </div>
-                        <form class="footer-widget__email-box mc-form" data-url="#">
-                            <div class="footer-widget__email-input-box">
-                                <input type="email" placeholder="Email Address" name="EMAIL">
-                            </div>
-                            <button type="submit" class="footer-widget__subscribe-btn thm-btn">Suscribirse</button>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <h5 class="text-white fw-bold">Enlaces</h5>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><a class="text-muted" href="{{ route('resenahistorica') }}">Parroquia</a></li>
+                            <li class="mb-2"><a class="text-muted" href="{{ route('quejasSugerencias') }}">Servicios</a></li>
+                            <li class="mb-2"><a class="text-muted" href="{{ route('noticias') }}">Noticias</a></li>
+                            <li class="mb-2"><a class="text-muted" href="{{ route('contactos') }}">Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <h5 class="text-white fw-bold">Visítanos</h5>
+                        <p class="text-muted small mt-3">Chiguaza - Huamboya, Ecuador. Horario de atención: Lun - Vie 08:30 - 16:30</p>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <h5 class="text-white fw-bold">Suscríbete</h5>
+                        <p class="text-muted small">Recibe novedades y documentos importantes por correo.</p>
+                        <form class="d-flex" action="#" method="POST">
+                            <input type="email" name="email" placeholder="Tu correo electrónico" class="form-control form-control-sm me-2" required>
+                            <button class="btn btn-primary btn-sm rounded-pill">Suscribirse</button>
                         </form>
-                        <div class="mc-form__response"></div><!-- /.mc-form__response -->
-                    </div>
-                </div>
-                <div class="site-footer__middle">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                            <div class="footer-widget__column footer-widget__Contact">
-                                <div class="footer-widget__title-box">
-                                    <h3 class="footer-widget__title">Contacto</h3>
-                                </div>
-                                <p class="footer-widget__Contact-text">Chiguaza-Huamboya <br> Ecuador.
-                                </p>
-                                <ul class="footer-widget__Contact-list list-unstyled">
-                                    <li>
-                                        <div class="icon">
-                                            <span class="icon-email"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p><a href="mailto:needhelp@company.com">{{ $empresah->email }}</a></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="fas fa-phone-square"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p><a href="">{{ $empresah->telefono }}</a></p>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="site-footer__social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-facebook"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="col-xl-2 col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="200ms">
-                                <div class="footer-widget__column footer-widget__link">
-                                    <div class="footer-widget__title-box">
-                                        <h3 class="footer-widget__title">Links</h3>
-                                    </div>
-                                    <ul class="footer-widget__link-list list-unstyled">
-                                        <li><a href="{{ route('resenahistorica') }}">Parroquia</a></li>
-                                        <li><a href="{{ route('quejasSugerencias') }}">Servicios</a></li>
-                                        <li><a href="{{ route('noticias') }}">Noticias</a></li>
-                                        <li><a href="{{ route('contactos') }}">Contacto</a></li>
-                                        <li><a href="{{ route('dashboard') }}">Ingresar</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="400ms">
-                            <div class="footer-widget__column footer-widget__explore">
-                                <div class="footer-widget__title-box">
-                                    <h3 class="footer-widget__title">Visitanos:</h3>
-                                </div>
-                                <ul class="footer-widget__link-list list-unstyled">
-                                    <li><a href="text-justify">El mundo es demaciado bonito como para viajar solo por
-                                            internet.</a></li>
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="500ms">
-                            <div class="footer-widget__column footer-widget__gallery">
-                                <div class="footer-widget__title-box">
-                                    <h3 class="footer-widget__title">Turismo</h3>
-                                </div>
-                                <ul class="footer-widget__gallery-list list-unstyled clearfix">
-                                    <li>
-                                        <div class="footer-widget__gallery-img">
-                                            <img src="assets/images/turismo/laberintos.jpg" alt="">
-                                            <a href="assets/images/turismo/laberintos.jpg" class="img-popup"><span
-                                                    class="fab fa-instagram"></span></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="footer-widget__gallery-img">
-                                            <img src="assets/images/turismo/cascadaa.jpg" alt="">
-                                            <a href="assets/images/turismo/cascadaa.jpg" class="img-popup"><span
-                                                    class="fab fa-instagram"></span></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="footer-widget__gallery-img">
-                                            <img src="assets/images/turismo/riochiwias.jpg" alt="">
-                                            <a href="assets/images/turismo/riochiwias.jpg" class="img-popup"><span
-                                                    class="fab fa-instagram"></span></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="footer-widget__gallery-img">
-                                            <img src="assets/images/turismo/andrentza.jpg" alt="">
-                                            <a href="assets/images/turismo/andrentza.jpg" class="img-popup"><span
-                                                    class="fab fa-instagram"></span></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="footer-widget__gallery-img">
-                                            <img src="assets/images/turismo/laguna.jpg" alt="">
-                                            <a href="assets/images/turismo/laguna.jpg" class="img-popup"><span
-                                                    class="fab fa-instagram"></span></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="footer-widget__gallery-img">
-                                            <img src="assets/images/turismo/cavernas.jpg" alt="">
-                                            <a href="assets/images/turismo/cavernas.jpg" class="img-popup"><span
-                                                    class="fab fa-instagram"></span></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="site-footer__bottom">
+
+            <div class="site-footer__bottom py-3" style="border-top:1px solid rgba(255,255,255,0.04);">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="site-footer__bottom-inner">
-                                <p class="site-footer__bottom-text">Copy© {{ date('Y') }} Xpertech. Todos derechos reservados.<a
-                                        href=""></a>
-                                </p>
-                            </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-muted small">&copy; {{ date('Y') }} GAD Parroquial Chiguaza. Todos los derechos reservados.</div>
+                        <div class="col-md-6 text-md-end">
+                            <a href="#" class="text-muted small me-3">Política de privacidad</a>
+                            <a href="#" class="text-muted small">Términos</a>
                         </div>
                     </div>
                 </div>
