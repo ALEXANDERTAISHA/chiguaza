@@ -46,49 +46,46 @@
                     <div class="services-one__points-box">
                         <ul class="">
                             @foreach ($archivos as $ar)
-                            <style>
-                                .home-hero-section .lead{ max-width:560px; }
-                                .news-one__single{ border-radius:12px; overflow:hidden; transition: transform .18s ease, box-shadow .18s ease; display:flex; flex-direction:column; height:100%; background:#fff; }
-                                .news-one__single:hover{ transform: translateY(-8px); box-shadow: 0 20px 40px rgba(2,24,58,0.12); }
-                                .news-one__img{ flex:0 0 auto; }
-                                .news-one__img img{ height:260px; object-fit:cover; width:100%; display:block; }
-                                .news-one__content{ flex:1 1 auto; display:flex; flex-direction:column; padding:20px; }
-                                .news-one__title{ flex:1 1 auto; margin-bottom:12px; }
-                                .news-one__btn{ margin-top:auto; }
-                                /* grid adjustments to keep equal height columns */
-                                .news-one .row > [class*="col-"]{ display:flex; }
+                            <li>
+                                <a target="_blank" href="{{ Storage::url($ar->url) }}">{{ $ar->nombre }}
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                            </li>    
+                            @endforeach
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Services One End-->
 
-                                /* Premium look tweaks */
-                                .news-one__date p{ background:#0d6efd; color:#fff; display:inline-block; padding:6px 10px; border-radius:6px; font-size:13px; }
-                                .news-one__content p{ color:#6b7280; }
-                            </style>
-                                            <div class="news-one__content">
-                                                <div class="news-one__user-and-meta">
-                                                    <div class="news-one__user">
-                                                        <div class="news-one__user-img">
-                                    
-                                                        </div>
-                                                        <div class="news-one__user-text">
-                                                            <p>Publicado por</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="news-one__meta">
-                                                        <div class="icon">
-                                                            <span class="fas fa-user"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <p>{{ $no->user->name }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <h3 class="news-one__title"><a href="{{ route('noticiasDetalle',$no->id) }}">
-                                                    {{ Str::limit($no->titulo, 45, '...') }}
-                                                </a>
-                                                </h3>
-                                                <div class="news-one__btn">
-                                                    <a href="{{ route('noticiasDetalle',$no->id) }}">Leer más<i class="icon-right-arrow"></i></a>
-                                                </div>
-                                            </div>
+<!--quejas sugerencias-->
+@include('sections.quejassugerencias',['autoridad'=>$autoridad])
+<!--quejas sugerencias End-->
+
+
+
+<!--News One Start-->
+<section class="news-one">
+    <div class="container">
+        <div class="section-title text-center">
+            <div class="section-title__icon">
+                <span class="fa fa-star"></span>
+            </div>
+            <span class="section-title__tagline">ÚLTIMAS NOTICIAS</span>
+            <h2 class="section-title__title">Últimas noticias
+                <br> de la semana</h2>
+        </div>
+        <div class="row">
+            @foreach ($noticias as $no)
+            <div class="col-xl-4 col-lg-4">
+                <div class="news-one__single">
+                    <div class="news-one__img-box">
+                        <div class="news-one__img">
+                            <img src="{{ Storage::url($no->foto) }}" alt="">
                         </div>
                         <div class="news-one__date">
                             <p>{{ $no->created_at->format('Y-m-d') }}</p>
