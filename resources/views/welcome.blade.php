@@ -29,23 +29,25 @@
                     <p style="margin:0; color:#b8c7e0; line-height:1.8;">Por un gobierno transparente, moderno y fácil de usar desde cualquier dispositivo.</p>
                 </div>
             </div>
-            <div style="padding:2rem 2.4rem; border-radius:36px; background: rgba(255,255,255,0.95); box-shadow: 0 30px 70px rgba(0,0,0,0.12);">
-                <div style="display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.8rem;">
-                    <div style="width:64px; height:64px; border-radius:20px; background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:1.45rem;">
-                        <span class="fa fa-file-alt"></span>
+            <div style="padding:2rem 2.4rem; border-radius:36px; background: rgba(255,255,255,0.95); box-shadow: 0 30px 70px rgba(0,0,0,0.12); min-height:640px; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                    <div style="display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.8rem;">
+                        <div style="width:64px; height:64px; border-radius:20px; background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:1.45rem;">
+                            <span class="fa fa-file-alt"></span>
+                        </div>
+                        <div>
+                            <p style="margin:0 0 0.9rem; color:#0f172a; text-transform:uppercase; letter-spacing:0.2em; font-size:0.85rem; font-weight:700;">Trámites y recursos</p>
+                            <h3 style="margin:0; font-size:2.25rem; line-height:1.05; color:#0f172a; font-weight:800;">Balcón de servicios en línea ordenado y profesional</h3>
+                        </div>
                     </div>
-                    <div>
-                        <p style="margin:0 0 0.9rem; color:#0f172a; text-transform:uppercase; letter-spacing:0.2em; font-size:0.85rem; font-weight:700;">Trámites y recursos</p>
-                        <h3 style="margin:0; font-size:2.25rem; line-height:1.05; color:#0f172a; font-weight:800;">Balcón de servicios en línea ordenado y profesional</h3>
+                    <p style="margin:0 0 1.8rem; color:#475569; font-size:1.02rem; line-height:1.85;">Accede a los documentos oficiales, plantillas y reportes con una experiencia limpia, segura y diseñada para encontrar lo que necesitas rápidamente.</p>
+                    <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; margin-bottom:2rem;">
+                        <a href="#" style="padding:1rem 1.6rem; border-radius:999px; background: linear-gradient(90deg, #22c55e 0%, #0ea5e9 100%); color:#08111a; font-weight:800; text-decoration:none; box-shadow: 0 22px 42px rgba(34,197,94,0.24);">Ver trámites</a>
+                        <span style="display:inline-flex; align-items:center; gap:0.55rem; color:#64748b; font-size:0.95rem;"><span style="width:10px; height:10px; border-radius:999px; background:#10b981;"></span>Actualizado recientemente</span>
                     </div>
                 </div>
-                <p style="margin:0 0 1.8rem; color:#475569; font-size:1.02rem; line-height:1.85;">Accede a los documentos oficiales, plantillas y reportes con una experiencia limpia, segura y diseñada para encontrar lo que necesitas rápidamente.</p>
-                <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; margin-bottom:2rem;">
-                    <a href="#" style="padding:1rem 1.6rem; border-radius:999px; background: linear-gradient(90deg, #22c55e 0%, #0ea5e9 100%); color:#08111a; font-weight:800; text-decoration:none; box-shadow: 0 22px 42px rgba(34,197,94,0.24);">Ver trámites</a>
-                    <span style="display:inline-flex; align-items:center; gap:0.55rem; color:#64748b; font-size:0.95rem;"><span style="width:10px; height:10px; border-radius:999px; background:#10b981;"></span>Actualizado recientemente</span>
-                </div>
-                <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:1rem;">
-                    @foreach ($archivos as $ar)
+                <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:1rem; flex:1; overflow:auto; padding-bottom:0.5rem;">
+                    @foreach ($archivos->sortByDesc('created_at')->take(12) as $ar)
                     <a target="_blank" href="{{ Storage::url($ar->url) }}" style="display:flex; align-items:center; gap:0.95rem; padding:1.1rem 1.25rem; border-radius:22px; background:#f8fafc; border:1px solid rgba(15,23,42,0.08); text-decoration:none; color:#0f172a; transition: transform .18s ease, box-shadow .18s ease;">
                         <span style="flex-shrink:0; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:16px; background:rgba(16,185,129,0.14); color:#047857; font-size:1rem;"><i class="fas fa-file-pdf"></i></span>
                         <span style="display:block; font-size:0.95rem; font-weight:700; line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ Str::limit($ar->nombre, 58, '...') }}</span>
