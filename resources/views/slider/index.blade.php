@@ -1,104 +1,107 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-2">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                  <b>Slider</b>  
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                      
-                        <div class="form-group">
-                            <label for="titulo_1"><b>Título</b></label>
-                            <input type="text" name="titulo_1" value="{{ old('titulo_1') }}" class="form-control" id="titulo_1">
-                        </div>
-                        <div class="form-group">
-                            <label for="titulo_2"><b>Sub Título</b></label>
-                            <input type="text" name="titulo_2" value="{{ old('titulo_2') }}" class="form-control" id="titulo_2">
-                        </div>
-                        <div class="form-group">
-                            <label for="descripcion"><b>Descripción</b></label>
-                            <input type="text" name="descripcion" value="{{ old('descripcion',$empresa->descripcion??'') }}" class="form-control" id="descripcion">
-                        </div>
+<div class="page-header-premium">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1>Slider</h1>
+            <p>Administra las diapositivas del homepage con una interfaz clara y organizada.</p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+            <a href="{{ url()->previous() }}" class="btn button-secondary-premium">Volver</a>
+        </div>
+    </div>
+</div>
 
-                        <div class="form-group">
-                            <label for="url_explorar_mas"><b>Url explorar más</b></label>
-                            <input type="url" name="url_explorar_mas" value="{{ old('url_explorar_mas') }}" class="form-control" id="url_explorar_mas">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="fondo"><b>Imagen de fondo</b></label>
-                            <input type="file" name="fondo" class="form-control-file" id="fondo">
-                            <i>Formato: Anchura=1894,Altura=731|.png .jpg .jpeg</i>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                    </form>
-                </div>
-                
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card premium-card h-100">
+            <div class="card-header">Crear nueva diapositiva</div>
+            <div class="card-body">
+                <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Título</strong></label>
+                        <input type="text" name="titulo_1" value="{{ old('titulo_1') }}" class="form-control" id="titulo_1">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Sub título</strong></label>
+                        <input type="text" name="titulo_2" value="{{ old('titulo_2') }}" class="form-control" id="titulo_2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Descripción</strong></label>
+                        <input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control" id="descripcion">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Url Explorar más</strong></label>
+                        <input type="url" name="url_explorar_mas" value="{{ old('url_explorar_mas') }}" class="form-control" id="url_explorar_mas">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Imagen de fondo</strong></label>
+                        <input type="file" name="fondo" class="form-control" id="fondo">
+                        <div class="form-text">Formato: ancho 1894 x alto 731. PNG/JPG/JPEG.</div>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn button-primary-premium">Guardar Slider</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Foto</th>
-                            <th scope="col">Título</th>
-                            <th scope="col">Sub Título</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Url explorar más</th>
-                            <th scope="col">Vista</th>
-                            <th scope="col">Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($sliders as $sl)
-                        <tr class="">
-                            <td>
-                                <a href="{{ Storage::url($sl->fondo) }}">
-                                    <img src="{{ Storage::url($sl->fondo) }}" alt="" width="45px">
-                                </a>
-                            </td>
-                            <td>{{ $sl->titulo_1 }}</td>
-                            <td>{{ $sl->titulo_2 }}</td>
-                            <td>{{ $sl->descripcion }}</td>
-                            <td>
-                                <a href="{{ $sl->url_explorar_mas }}">URL</a>
-                            </td>
-                            <td>
-                                <form action="{{ route('slider.update',$sl) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <select class="form-control" onchange="this.form.submit()">
-                                        <option value="SI" {{ $sl->vista==='SI'?'selected':'' }}>SI</option>
-                                        <option value="NO" {{ $sl->vista==='NO'?'selected':'' }}>NO</option>
-                                      </select>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="{{ route('slider.destroy',$sl) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm">X</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="card premium-card h-100">
+            <div class="card-header">Diapositivas existentes</div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Título</th>
+                                <th>Sub título</th>
+                                <th>Descripción</th>
+                                <th>Vista</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($sliders as $sl)
+                            <tr>
+                                <td>
+                                    <a href="{{ Storage::url($sl->fondo) }}">
+                                        <img src="{{ Storage::url($sl->fondo) }}" alt="fondo" width="60" class="rounded">
+                                    </a>
+                                </td>
+                                <td>{{ $sl->titulo_1 }}</td>
+                                <td>{{ $sl->titulo_2 }}</td>
+                                <td>{{ Str::limit($sl->descripcion, 45) }}</td>
+                                <td>
+                                    <form action="{{ route('slider.update',$sl) }}" method="POST" class="mb-0">
+                                        @csrf
+                                        @method('PUT')
+                                        <select class="form-select form-select-sm" onchange="this.form.submit()">
+                                            <option value="SI" {{ $sl->vista==='SI'?'selected':'' }}>SI</option>
+                                            <option value="NO" {{ $sl->vista==='NO'?'selected':'' }}>NO</option>
+                                        </select>
+                                    </form>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a class="btn btn-sm button-secondary-premium" href="{{ $sl->url_explorar_mas }}" target="_blank">Abrir</a>
+                                        <form action="{{ route('slider.destroy',$sl) }}" method="post" class="mb-0">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
-        </div>
-        <div class="col-md-6">
-
-        </div>
-        <div class="col-md-6">
-
         </div>
     </div>
 </div>
