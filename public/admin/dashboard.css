@@ -220,3 +220,86 @@ body {
 .form-label strong {
   color: #1f3d8f;
 }
+
+.folder-card {
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, .08);
+  border: 1px solid rgba(59, 130, 246, .14);
+  overflow: hidden;
+}
+
+.folder-card .card-header {
+  background: rgba(59, 130, 246, .08);
+  border-bottom: 1px solid rgba(59, 130, 246, .14);
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.folder-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: #475569;
+}
+
+.folder-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 700;
+  background: rgba(59, 130, 246, .11);
+  color: #1d4ed8;
+}
+
+.file-item {
+  padding: 1rem 1.15rem;
+  margin-bottom: .85rem;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, .05);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.file-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, .08);
+}
+
+.file-item .file-name {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.file-item .file-actions {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.subfolder-card {
+  border-left: 4px solid rgba(59, 130, 246, .9);
+  padding-left: 1rem;
+  margin-top: 1.25rem;
+}
+
+.subfolder-card .card-body {
+  background: #f8fbff;
+  border-radius: 1rem;
+}
+
+.action-menu .dropdown-menu {
+  min-width: 180px;
+}
+
+.action-menu .dropdown-item {
+  padding: .75rem 1rem;
+}

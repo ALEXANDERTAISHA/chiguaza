@@ -19,19 +19,21 @@
     </div>
     <div class="card-body">
         @foreach ($carpetas as $carpeta)
-        <div class="card mb-3 shadow-sm">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h5 class="mb-1">{{ $carpeta->nombre }}</h5>
-                        <p class="text-muted mb-0">Subcarpetas: {{ $carpeta->subCarpetas->count() }} · Archivos: {{ $carpeta->archivos->count() ?? 0 }}</p>
-                    </div>
-                    <div class="btn-group">
-                        @include('carpetas.crear',['carpeta'=>$carpeta])
-                        <button class="btn btn-sm button-secondary-premium" onclick="abrirModal({{ $carpeta->id }},'{{ addslashes($carpeta->nombre) }}')">Subir archivo</button>
+        <div class="card mb-3 folder-card">
+            <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <div>
+                    <h5 class="mb-1">{{ $carpeta->nombre }}</h5>
+                    <div class="folder-meta">
+                        <span class="folder-badge">Subcarpetas: {{ $carpeta->subCarpetas->count() }}</span>
+                        <span class="folder-badge">Archivos: {{ $carpeta->archivos->count() ?? 0 }}</span>
                     </div>
                 </div>
-
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                    @include('carpetas.crear',['carpeta'=>$carpeta])
+                    <button class="btn btn-sm button-secondary-premium" onclick="abrirModal({{ $carpeta->id }},'{{ addslashes($carpeta->nombre) }}')">Subir archivo</button>
+                </div>
+            </div>
+            <div class="card-body">
                 @include('carpetas.archivos',['carpeta'=>$carpeta])
 
                 @if ($carpeta->subCarpetas)
