@@ -41,8 +41,8 @@
                         </div>
                     </div>
                     <p style="margin:0 0 1.8rem; color:#475569; font-size:1.02rem; line-height:1.85;">Accede a los documentos oficiales, plantillas y reportes con una experiencia limpia, segura y diseñada para encontrar lo que necesitas rápidamente.</p>
-                    <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; margin-bottom:2rem;">
-                        <a href="#" style="padding:1rem 1.6rem; border-radius:999px; background: linear-gradient(90deg, #22c55e 0%, #0ea5e9 100%); color:#08111a; font-weight:800; text-decoration:none; box-shadow: 0 22px 42px rgba(34,197,94,0.24);">Ver trámites</a>
+                        <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; margin-bottom:2rem;">
+                            <a href="https://gadchiguaza.gob.ec/tramites" style="padding:1rem 1.6rem; border-radius:999px; background: linear-gradient(90deg, #22c55e 0%, #0ea5e9 100%); color:#08111a; font-weight:800; text-decoration:none; box-shadow: 0 22px 42px rgba(34,197,94,0.24);">Ver trámites</a>
                         <span style="display:inline-flex; align-items:center; gap:0.55rem; color:#64748b; font-size:0.95rem;"><span style="width:10px; height:10px; border-radius:999px; background:#10b981;"></span>Actualizado recientemente</span>
                     </div>
                 </div>
