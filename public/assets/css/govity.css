@@ -1966,8 +1966,8 @@ ul {
 .main-slider .item {
   background-color: var(--govity-black);
   position: relative;
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   z-index: 10;
 }
 
@@ -2133,18 +2133,18 @@ ul {
 
 .main-slider__title {
   position: relative;
-  font-size: 90px;
+  font-size: 40px;
   color: var(--govity-white);
   font-weight: 700;
-  line-height: 90px;
+  line-height: 44px;
   letter-spacing: var(--govity-letter-spacing);
-  margin-bottom: 35px;
-  margin-top: 19px;
+  margin-bottom: 20px;
+  margin-top: 10px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-120px);
-  transition-delay: 1000ms;
-  transition: transform 2000ms ease, opacity 2000ms ease;
+  transform: translateY(-80px);
+  transition-delay: 600ms;
+  transition: transform 1200ms ease, opacity 1200ms ease;
 }
 
 .main-slider__btn-box {

@@ -21,7 +21,7 @@ class WelcomeController extends Controller
         // Artisan::call('key:generate');
         // Artisan::call('migrate:fresh --seed');
 
-        $slider=Slider::where('vista','SI')->latest()->take(5)->get();
+        $slider=Slider::where('vista','SI')->orderBy('id','asc')->take(5)->get();
 
         $arhivos=Archivo::latest()->take(15)->get();
         $noticias=Noticia::latest()->take(6)->get();
