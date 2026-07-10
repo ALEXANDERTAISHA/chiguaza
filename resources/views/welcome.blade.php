@@ -139,7 +139,7 @@
         <div class="row">
             @foreach ($noticias as $no)
             <div class="col-xl-4 col-lg-4">
-                <div class="news-one__single">
+                <div class="news-one__single" style="cursor:pointer;" onclick="window.location='{{ route('noticiasDetalle',$no->id) }}'">
                     <div class="news-one__img-box">
                         <div class="news-one__img">
                             <a href="{{ Storage::url($no->foto) }}" class="news-lightbox">
@@ -188,6 +188,10 @@
             if (window.jQuery && jQuery.magnificPopup) {
                 jQuery('.news-lightbox').magnificPopup({ type: 'image', gallery: { enabled: true } });
             }
+            // Prevent clicks on the image lightbox from bubbling to the card onclick
+            document.querySelectorAll('.news-lightbox').forEach(function(el){
+                el.addEventListener('click', function(e){ e.stopPropagation(); });
+            });
         });
     </script>
     </div>
