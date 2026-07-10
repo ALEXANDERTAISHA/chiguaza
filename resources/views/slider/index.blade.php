@@ -70,23 +70,22 @@
                                 </div>
                             </div>
                             <p class="slider-preview-description">{{ Str::limit($sl->descripcion, 100) }}</p>
-                            <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+                            <div class="slider-preview-actions mt-2">
                                 <a class="btn btn-sm button-secondary-premium" href="{{ $sl->url_explorar_mas }}" target="_blank">Abrir</a>
                                 <form action="{{ route('slider.destroy',$sl) }}" method="post" class="mb-0">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
+                                <form action="{{ route('slider.update',$sl) }}" method="POST" class="mb-0 ms-auto">
+                                    @csrf
+                                    @method('PUT')
+                                    <select class="form-select form-select-sm" onchange="this.form.submit()">
+                                        <option value="SI" {{ $sl->vista==='SI'?'selected':'' }}>SI</option>
+                                        <option value="NO" {{ $sl->vista==='NO'?'selected':'' }}>NO</option>
+                                    </select>
+                                </form>
                             </div>
-                            <form action="{{ route('slider.update',$sl) }}" method="POST" class="mt-3">
-                                @csrf
-                                @method('PUT')
-                                <label class="form-label"><strong>Visibilidad</strong></label>
-                                <select class="form-select" onchange="this.form.submit()">
-                                    <option value="SI" {{ $sl->vista==='SI'?'selected':'' }}>SI</option>
-                                    <option value="NO" {{ $sl->vista==='NO'?'selected':'' }}>NO</option>
-                                </select>
-                            </form>
                         </div>
                     </article>
                     @endforeach
