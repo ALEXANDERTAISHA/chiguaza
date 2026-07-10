@@ -52,54 +52,44 @@
     <div class="col-lg-7">
         <div class="card premium-card h-100">
             <div class="card-header">Diapositivas existentes</div>
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Foto</th>
-                                <th>Título</th>
-                                <th>Sub título</th>
-                                <th>Descripción</th>
-                                <th>Vista</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($sliders as $sl)
-                            <tr>
-                                <td>
-                                    <a href="{{ Storage::url($sl->fondo) }}">
-                                        <img src="{{ Storage::url($sl->fondo) }}" alt="fondo" width="60" class="rounded">
-                                    </a>
-                                </td>
-                                <td>{{ $sl->titulo_1 }}</td>
-                                <td>{{ $sl->titulo_2 }}</td>
-                                <td>{{ Str::limit($sl->descripcion, 45) }}</td>
-                                <td>
-                                    <form action="{{ route('slider.update',$sl) }}" method="POST" class="mb-0">
-                                        @csrf
-                                        @method('PUT')
-                                        <select class="form-select form-select-sm" onchange="this.form.submit()">
-                                            <option value="SI" {{ $sl->vista==='SI'?'selected':'' }}>SI</option>
-                                            <option value="NO" {{ $sl->vista==='NO'?'selected':'' }}>NO</option>
-                                        </select>
-                                    </form>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-2">
-                                        <a class="btn btn-sm button-secondary-premium" href="{{ $sl->url_explorar_mas }}" target="_blank">Abrir</a>
-                                        <form action="{{ route('slider.destroy',$sl) }}" method="post" class="mb-0">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <div class="card-body">
+                <div class="slider-preview-grid">
+                    @foreach ($sliders as $sl)
+                    <article class="slider-preview-card">
+                        <div class="slider-preview-image">
+                            <img src="{{ Storage::url($sl->fondo) }}" alt="Slider {{ $sl->titulo_1 }}" loading="lazy">
+                            <span class="slider-status-pill {{ $sl->vista === 'SI' ? 'slider-status-active' : 'slider-status-inactive' }}">
+                                {{ $sl->vista === 'SI' ? 'Activo' : 'Oculto' }}
+                            </span>
+                        </div>
+                        <div class="slider-preview-body">
+                            <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
+                                <div>
+                                    <h3 class="slider-preview-title">{{ Str::limit($sl->titulo_1, 28) }}</h3>
+                                    <p class="slider-preview-subtitle">{{ Str::limit($sl->titulo_2, 36) }}</p>
+                                </div>
+                            </div>
+                            <p class="slider-preview-description">{{ Str::limit($sl->descripcion, 100) }}</p>
+                            <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+                                <a class="btn btn-sm button-secondary-premium" href="{{ $sl->url_explorar_mas }}" target="_blank">Abrir</a>
+                                <form action="{{ route('slider.destroy',$sl) }}" method="post" class="mb-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </div>
+                            <form action="{{ route('slider.update',$sl) }}" method="POST" class="mt-3">
+                                @csrf
+                                @method('PUT')
+                                <label class="form-label"><strong>Visibilidad</strong></label>
+                                <select class="form-select" onchange="this.form.submit()">
+                                    <option value="SI" {{ $sl->vista==='SI'?'selected':'' }}>SI</option>
+                                    <option value="NO" {{ $sl->vista==='NO'?'selected':'' }}>NO</option>
+                                </select>
+                            </form>
+                        </div>
+                    </article>
+                    @endforeach
                 </div>
             </div>
         </div>
