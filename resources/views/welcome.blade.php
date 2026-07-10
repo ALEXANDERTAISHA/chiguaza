@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:1rem; flex:1; overflow:auto; padding-bottom:0.5rem;">
-                    @foreach ($archivos->sortByDesc('created_at')->take(12) as $ar)
+                    @foreach ($archivos->sortByDesc('created_at')->take(4) as $ar)
                     <a href="#" class="ver-pdf-btn" data-pdf="{{ Storage::url($ar->url) }}" data-nombre="{{ Str::limit($ar->nombre, 58, '...') }}" style="display:flex; align-items:center; gap:0.95rem; padding:1.1rem 1.25rem; border-radius:22px; background:#f8fafc; border:1px solid rgba(15,23,42,0.08); text-decoration:none; color:#0f172a; transition: transform .18s ease, box-shadow .18s ease;">
                         <span style="flex-shrink:0; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:16px; background:rgba(16,185,129,0.14); color:#047857; font-size:1rem;"><i class="fas fa-file-pdf"></i></span>
                         <span style="display:block; font-size:0.95rem; font-weight:700; line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ Str::limit($ar->nombre, 58, '...') }}</span>
