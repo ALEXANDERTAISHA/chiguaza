@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="button" class="btn premium-pdf-btn ver-pdf-btn" data-pdf="{{ Storage::url($ar->url) }}" data-nombre="{{ $ar->nombre }}">
+                    <button type="button" class="btn premium-pdf-btn ver-pdf-btn" data-pdf-id="{{ $ar->id }}" data-nombre="{{ $ar->nombre }}">
                         <i class="fa fa-eye me-2"></i>Ver PDF
                     </button>
                 </div>

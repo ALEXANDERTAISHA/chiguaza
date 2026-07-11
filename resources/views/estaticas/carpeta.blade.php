@@ -139,12 +139,19 @@
         var downloadBtn = document.getElementById('pdfDownloadBtn');
 
         document.querySelectorAll('.ver-pdf-btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var url = btn.getAttribute('data-pdf');
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var archivoId = btn.getAttribute('data-pdf-id');
                 var nombre = btn.getAttribute('data-nombre') || 'Documento';
-                iframe.src = url;
+                
+                if (!archivoId) return;
+                
+                var pdfUrl = '/ver-archivo/' + archivoId;
+                var downloadUrl = '/descargar-archivo/' + archivoId;
+                
+                iframe.src = pdfUrl;
                 titleEl.textContent = nombre;
-                if (downloadBtn) downloadBtn.href = url;
+                if (downloadBtn) downloadBtn.href = downloadUrl;
                 modal.show();
             });
         });

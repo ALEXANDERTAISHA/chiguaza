@@ -48,7 +48,7 @@
                 </div>
                 <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:1rem;">
                     @foreach ($archivos->sortByDesc('created_at')->take(4) as $ar)
-                    <a href="#" class="ver-pdf-btn" data-pdf="{{ Storage::url($ar->url) }}" data-nombre="{{ Str::limit($ar->nombre, 58, '...') }}" style="display:flex; flex-direction:column; justify-content:space-between; gap:1rem; padding:1.4rem 1.35rem; border-radius:24px; background:#f8fbff; border:1px solid rgba(59,130,246,0.16); text-decoration:none; color:#0f172a; transition: transform .18s ease, box-shadow .18s ease; min-height:140px;">
+                    <a href="#" class="ver-pdf-btn" data-pdf-id="{{ $ar->id }}" data-nombre="{{ Str::limit($ar->nombre, 58, '...') }}" style="display:flex; flex-direction:column; justify-content:space-between; gap:1rem; padding:1.4rem 1.35rem; border-radius:24px; background:#f8fbff; border:1px solid rgba(59,130,246,0.16); text-decoration:none; color:#0f172a; transition: transform .18s ease, box-shadow .18s ease; min-height:140px;">
                         <div style="display:flex; align-items:center; gap:0.95rem;">
                             <span style="flex-shrink:0; width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:16px; background:rgba(37,99,235,0.12); color:#2563eb; font-size:1.2rem;"><i class="fas fa-file-pdf"></i></span>
                             <div style="min-width:0;">
@@ -99,12 +99,17 @@
         document.querySelectorAll('.ver-pdf-btn').forEach(function (btn) {
             btn.addEventListener('click', function (event) {
                 event.preventDefault();
-                var url = btn.getAttribute('data-pdf');
+                var archivoId = btn.getAttribute('data-pdf-id');
                 var nombre = btn.getAttribute('data-nombre') || 'Documento';
-                if (!url) return;
-                iframe.src = url;
+                
+                if (!archivoId) return;
+                
+                var pdfUrl = '/ver-archivo/' + archivoId;
+                var downloadUrl = '/descargar-archivo/' + archivoId;
+                
+                iframe.src = pdfUrl;
                 titleEl.textContent = nombre;
-                if (downloadBtn) downloadBtn.href = url;
+                if (downloadBtn) downloadBtn.href = downloadUrl;
                 modal.show();
             });
         });

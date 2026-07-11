@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EstaticasController extends Controller
 {
@@ -28,17 +29,99 @@ class EstaticasController extends Controller
 
     public function verArchivo($id) {
         $arc = Archivo::findOrFail($id);
-        $pdfUrl = Storage::disk('public')->url($arc->url);
-
-        return view('estaticas.visor-pdf', [
-            'archivo' => $arc,
-            'pdfUrl' => $pdfUrl,
+        
+        // Buscar el archivo en diferentes ubicaciones
+        $filePath = null;
+        
+        // Intentar en public/uploads/archivos/ (nuevas rutas)
+        if (Str::startsWith($arc->url, 'uploads/')) {
+            $publicPath = public_path($arc->url);
+            if (file_exists($publicPath)) {
+                $filePath = $publicPath;
+            }
+        }
+        
+        // Intentar en public/storage/ (con symlink)
+        if (!$filePath && Str::startsWith($arc->url, 'public/')) {
+            $subPath = Str::after($arc->url, 'public/');
+            $storagePath = public_path('storage/' . $subPath);
+            if (file_exists($storagePath)) {
+                $filePath = $storagePath;
+            }
+        }
+        
+        // Intentar en storage/app/public/ (rutas antiguas)
+        if (!$filePath) {
+            $storagePath = storage_path('app/' . $arc->url);
+            if (file_exists($storagePath)) {
+                $filePath = $storagePath;
+            }
+        }
+        
+        // Última opción: intentar como ruta pública directa
+        if (!$filePath) {
+            $publicPath = public_path($arc->url);
+            if (file_exists($publicPath)) {
+                $filePath = $publicPath;
+            }
+        }
+        
+        if (!$filePath || !file_exists($filePath)) {
+            abort(404, 'Archivo no encontrado');
+        }
+        
+        return response()->file($filePath, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $arc->nombre . '"'
         ]);
     }
 
     public function descargarArchivo($id) {
         $arc = Archivo::findOrFail($id);
-        return Storage::disk('public')->download($arc->url, $arc->nombre);
+        
+        // Buscar el archivo en diferentes ubicaciones
+        $filePath = null;
+        
+        // Intentar en public/uploads/archivos/ (nuevas rutas)
+        if (Str::startsWith($arc->url, 'uploads/')) {
+            $publicPath = public_path($arc->url);
+            if (file_exists($publicPath)) {
+                $filePath = $publicPath;
+            }
+        }
+        
+        // Intentar en public/storage/ (con symlink)
+        if (!$filePath && Str::startsWith($arc->url, 'public/')) {
+            $subPath = Str::after($arc->url, 'public/');
+            $storagePath = public_path('storage/' . $subPath);
+            if (file_exists($storagePath)) {
+                $filePath = $storagePath;
+            }
+        }
+        
+        // Intentar en storage/app/public/ (rutas antiguas)
+        if (!$filePath) {
+            $storagePath = storage_path('app/' . $arc->url);
+            if (file_exists($storagePath)) {
+                $filePath = $storagePath;
+            }
+        }
+        
+        // Última opción: intentar como ruta pública directa
+        if (!$filePath) {
+            $publicPath = public_path($arc->url);
+            if (file_exists($publicPath)) {
+                $filePath = $publicPath;
+            }
+        }
+        
+        if (!$filePath || !file_exists($filePath)) {
+            abort(404, 'Archivo no encontrado');
+        }
+        
+        return response()->download($filePath, $arc->nombre, [
+            'Content-Type' => 'application/pdf'
+        ]);
     }
 
     public function carpeta($id) {
