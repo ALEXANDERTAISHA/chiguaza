@@ -1,6 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .noticia-admin-item {
+        grid-template-columns: 180px 1fr !important;
+    }
+
+    .noticia-admin-thumb {
+        height: 115px !important;
+        min-height: 115px !important;
+        max-height: 115px !important;
+    }
+
+    .noticia-admin-thumb img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    @media (max-width: 575.98px) {
+        .noticia-admin-item {
+            grid-template-columns: 1fr !important;
+        }
+
+        .noticia-admin-thumb {
+            height: 130px !important;
+            min-height: 130px !important;
+            max-height: 130px !important;
+        }
+    }
+</style>
+
 <div class="page-header-premium">
     <div class="row align-items-center">
         <div class="col-md-8">

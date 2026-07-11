@@ -433,7 +433,7 @@ body {
 
 .noticia-admin-item {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 180px 1fr;
   gap: .9rem;
   padding: .7rem;
   border: 1px solid rgba(37, 99, 235, .14);
@@ -450,7 +450,7 @@ body {
 
 .noticia-admin-thumb {
   width: 100%;
-  height: 84px;
+  height: 115px;
   border-radius: .7rem;
   overflow: hidden;
   background: #e2e8f0;
