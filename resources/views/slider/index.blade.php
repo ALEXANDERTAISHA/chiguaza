@@ -1,6 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .slider-preview-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: .75rem !important;
+    }
+
+    .slider-preview-card {
+        display: grid !important;
+        grid-template-columns: 180px 1fr !important;
+        width: 100% !important;
+        border-radius: .9rem !important;
+        overflow: hidden !important;
+    }
+
+    .slider-preview-image {
+        height: 115px !important;
+        min-height: 115px !important;
+        max-height: 115px !important;
+        aspect-ratio: auto !important;
+    }
+
+    .slider-preview-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    .slider-preview-body {
+        padding: .75rem .85rem !important;
+        gap: .4rem !important;
+    }
+
+    @media (max-width: 991.98px) {
+        .slider-preview-card {
+            grid-template-columns: 1fr !important;
+        }
+
+        .slider-preview-image {
+            height: 150px !important;
+            min-height: 150px !important;
+            max-height: 150px !important;
+        }
+    }
+</style>
+
 <div class="page-header-premium">
     <div class="row align-items-center">
         <div class="col-md-8">
