@@ -30,7 +30,8 @@
                             <i>Formato: Anchura=350,Altura=250|.png .jpg .jpeg</i>
                             <br>
                             <a href="{{ $noticia->foto_link }}">
-                                <img src="{{ $noticia->foto_link }}" alt="" width="45px">
+                                <img src="{{ $noticia->foto_link }}" alt="{{ $noticia->titulo }}" width="45px"
+                                    onerror="this.onerror=null;this.src='{{ asset('assets/images/blog/news-1-1.jpg') }}';">
                             </a>
                         </div>
                         

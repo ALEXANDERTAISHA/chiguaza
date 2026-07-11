@@ -46,7 +46,8 @@
                         <div class="news-one__single clickable-card" data-url="{{ route('noticiasDetalle',$no->id) }}">
                             <div class="news-one__img-box">
                                 <div class="news-one__img">
-                                    <img src="{{ $no->foto_link }}" alt="{{ $no->titulo }}">
+                                    <img src="{{ $no->foto_link }}" alt="{{ $no->titulo }}"
+                                        onerror="this.onerror=null;this.src='{{ asset('assets/images/blog/news-1-1.jpg') }}';">
                                 </div>
                                 <div class="news-one__date">
                                     <p>{{ $no->created_at->format('Y-m-d') }}</p>

@@ -149,7 +149,8 @@
                     <div class="news-one__img-box">
                         <div class="news-one__img">
                             <a href="{{ $no->foto_link }}" class="news-lightbox">
-                                <img src="{{ $no->foto_link }}" alt="">
+                                <img src="{{ $no->foto_link }}" alt="{{ $no->titulo }}"
+                                    onerror="this.onerror=null;this.src='{{ asset('assets/images/blog/news-1-1.jpg') }}';">
                             </a>
                         </div>
                         <div class="news-one__date">

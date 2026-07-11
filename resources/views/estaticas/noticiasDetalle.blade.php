@@ -38,7 +38,8 @@
                 <div class="news-detail-left">
                     <div class="img-wrap">
                         <a href="{{ $noticia->foto_link }}" class="news-detail-lightbox">
-                            <img src="{{ $noticia->foto_link }}" alt="{{ $noticia->titulo }}">
+                            <img src="{{ $noticia->foto_link }}" alt="{{ $noticia->titulo }}"
+                                onerror="this.onerror=null;this.src='{{ asset('assets/images/blog/news-1-1.jpg') }}';">
                         </a>
                     </div>
                     <div style="margin-top:12px;">
