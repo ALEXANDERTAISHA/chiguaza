@@ -3,20 +3,21 @@
 @section('content')
 <style>
     .noticia-admin-item {
-        grid-template-columns: 120px 1fr auto !important;
+        grid-template-columns: 70px 1fr auto !important;
         align-items: center !important;
     }
 
     .noticia-admin-thumb {
-        height: 72px !important;
-        min-height: 72px !important;
-        max-height: 72px !important;
+        height: 56px !important;
+        min-height: 56px !important;
+        max-height: 56px !important;
+        width: 70px !important;
     }
 
     .noticia-admin-thumb img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover !important;
+        object-fit: contain !important;
         display: block !important;
     }
 
@@ -44,7 +45,7 @@
     .noticia-admin-right {
         display: flex !important;
         align-items: center !important;
-        gap: .45rem !important;
+        gap: .35rem !important;
     }
 
     .noticia-admin-status {
@@ -53,12 +54,12 @@
 
     .noticia-admin-actions {
         margin-top: 0 !important;
-        gap: .35rem !important;
+        gap: .25rem !important;
     }
 
     .noticia-admin-actions .btn {
-        padding: .35rem .55rem !important;
-        font-size: .78rem !important;
+        padding: .35rem .45rem !important;
+        font-size: .75rem !important;
     }
 
     @media (max-width: 575.98px) {
@@ -70,6 +71,7 @@
             height: 105px !important;
             min-height: 105px !important;
             max-height: 105px !important;
+            width: 100% !important;
         }
 
         .noticia-admin-right {
