@@ -22,7 +22,7 @@
         <div style="display:grid; grid-template-columns: 1.15fr 0.95fr; gap:2rem; align-items:center;">
             <div style="position:relative;">
                 <div style="border-radius:34px; overflow:hidden; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.14); box-shadow: 0 35px 70px rgba(0,0,0,0.25);">
-                    <img src="{{ asset('assets/images/resources/services-one-img-1.png') }}" alt="consulta trámites" style="width:100%; display:block; object-fit:cover; min-height:580px;">
+                    <img src="{{ asset('assets/images/resources/department-details-img-1.jpg') }}" alt="consulta de trámites y atención ciudadana" style="width:100%; display:block; object-fit:cover; min-height:580px;">
                 </div>
                 <div style="position:absolute; left:2rem; bottom:2rem; background: rgba(5,30,70,0.92); border:1px solid rgba(255,255,255,0.12); border-radius:28px; padding:1.5rem 1.6rem; width:calc(100% - 4rem); backdrop-filter: blur(16px);">
                     <h2 style="margin:0 0 0.6rem; font-size:2.15rem; color:#ffffff; font-weight:800;">Consulta trámites</h2>
