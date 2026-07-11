@@ -68,20 +68,20 @@
 
 <!-- Modal PDF Viewer -->
 <div class="modal fade" id="pdfViewerModal" tabindex="-1" aria-labelledby="pdfViewerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width:1160px;">
-        <div class="modal-content" style="border-radius:28px; overflow:hidden;">
-            <div class="modal-header border-0" style="background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); color:#fff;">
+    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width:1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
                 <h5 class="modal-title" id="pdfViewerModalLabel">Documento</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-0" style="background:#0f172a;">
-                <div class="ratio ratio-16x9" style="min-height:68vh;">
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9" style="min-height:70vh;">
                     <iframe src="" frameborder="0" class="w-100 h-100" aria-label="Visor PDF"></iframe>
                 </div>
             </div>
-            <div class="modal-footer" style="background:#0f172a; border-top:1px solid rgba(255,255,255,0.08);">
-                <a href="#" class="btn btn-outline-light" id="pdfDownloadBtn" target="_blank">Descargar</a>
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-outline-secondary" id="pdfDownloadBtn" target="_blank">Descargar</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
