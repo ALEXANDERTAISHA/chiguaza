@@ -24,7 +24,7 @@ class WelcomeController extends Controller
         $slider=Slider::where('vista','SI')->orderBy('id','asc')->take(5)->get();
 
         $arhivos=Archivo::latest()->take(15)->get();
-        $noticias=Noticia::latest()->take(6)->get();
+        $noticias=Noticia::where('vista','SI')->latest()->take(6)->get();
         $data = array(
             'sliders'=>$slider,
             'autoridad'=>Autoridad::first(),
