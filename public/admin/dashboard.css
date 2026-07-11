@@ -222,23 +222,22 @@ body {
 }
 
 .slider-preview-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
 }
 
 .slider-preview-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 1.25rem;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: stretch;
+  border-radius: 1rem;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
   border: 1px solid rgba(96, 165, 250, .12);
-  box-shadow: 0 18px 36px rgba(15, 23, 42, .06);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, .06);
   transition: transform .18s ease, box-shadow .18s ease;
-  max-width: 640px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .slider-preview-card:hover {
@@ -249,9 +248,7 @@ body {
 .slider-preview-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  min-height: 140px;
-  max-height: 260px;
+  height: 140px;
   overflow: hidden;
   background: rgba(59, 130, 246, .04);
 }
@@ -295,10 +292,10 @@ body {
 }
 
 .slider-preview-body {
-  padding: 1.5rem;
+  padding: .9rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: .85rem;
+  gap: .55rem;
 }
 
 .slider-preview-actions {
@@ -310,6 +307,16 @@ body {
 .slider-preview-card .btn {
   padding: .45rem .65rem;
   font-size: .85rem;
+}
+
+@media (max-width: 991.98px) {
+  .slider-preview-card {
+    grid-template-columns: 1fr;
+  }
+
+  .slider-preview-image {
+    height: 180px;
+  }
 }
 
 .slider-preview-title {
