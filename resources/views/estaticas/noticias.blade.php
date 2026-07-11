@@ -33,6 +33,7 @@
                 <style>
                     .news-one__single{ display:flex; flex-direction:column; height:100%; border-radius:12px; overflow:hidden; background:#fff; transition: transform .18s ease, box-shadow .18s ease; }
                     .news-one__single:hover{ transform: translateY(-8px); box-shadow: 0 20px 40px rgba(2,24,58,0.08); }
+                    .news-one__single.clickable-card{ cursor:pointer; }
                     .news-one__img img{ width:100%; height:260px; object-fit:cover; display:block; }
                     .news-page .row > [class*="col-"]{ display:flex; }
                     .news-one__content{ display:flex; flex-direction:column; padding:20px; }
@@ -42,12 +43,10 @@
                 <div class="row">
                     @foreach ($noticias as $no)
                     <div class="col-xl-4 col-lg-4">
-                        <div class="news-one__single">
+                        <div class="news-one__single clickable-card" data-url="{{ route('noticiasDetalle',$no->id) }}">
                             <div class="news-one__img-box">
                                 <div class="news-one__img">
-                                    <a href="{{ Storage::url($no->foto) }}" class="news-lightbox">
-                                        <img src="{{ Storage::url($no->foto) }}" alt="">
-                                    </a>
+                                    <img src="{{ Storage::url($no->foto) }}" alt="{{ $no->titulo }}">
                                 </div>
                                 <div class="news-one__date">
                                     <p>{{ $no->created_at->format('Y-m-d') }}</p>
@@ -91,9 +90,11 @@
         <!--News Page End-->
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                if (window.jQuery && jQuery.magnificPopup) {
-                    jQuery('.news-lightbox').magnificPopup({ type: 'image', gallery: { enabled: true } });
-                }
+                document.querySelectorAll('.clickable-card').forEach(function(card){
+                    card.addEventListener('click', function(){
+                        window.location = card.dataset.url;
+                    });
+                });
             });
         </script>
 @endsection
