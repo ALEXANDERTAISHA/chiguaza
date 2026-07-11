@@ -44,37 +44,35 @@
     <div class="col-xl-7">
         <div class="card premium-card h-100">
             <div class="card-header">Listado de noticias</div>
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Título</th>
-                                <th>Usuario</th>
-                                <th>Vista</th>
-                                <th class="text-end">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($noticias as $sl)
-                            <tr>
-                                <td>{{ $sl->titulo }}</td>
-                                <td>{{ $sl->user->email }}</td>
-                                <td>{{ $sl->vista }}</td>
-                                <td class="text-end">
-                                    <div class="d-flex justify-content-end gap-2">
-                                        <a class="btn btn-sm button-secondary-premium" href="{{ route('noticias-admin.edit',$sl) }}">Editar</a>
-                                        <form action="{{ route('noticias-admin.destroy',$sl) }}" method="post" class="mb-0">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <div class="card-body noticia-admin-body">
+                <div class="noticia-admin-list">
+                    @foreach ($noticias as $sl)
+                    <article class="noticia-admin-item">
+                        <div class="noticia-admin-thumb">
+                            <img src="{{ Storage::url($sl->foto) }}" alt="{{ $sl->titulo }}" loading="lazy">
+                        </div>
+                        <div class="noticia-admin-content">
+                            <div class="noticia-admin-top">
+                                <h3 class="noticia-admin-title">{{ Str::limit($sl->titulo, 68, '...') }}</h3>
+                                <span class="noticia-admin-status {{ $sl->vista === 'SI' ? 'is-visible' : 'is-hidden' }}">
+                                    {{ $sl->vista === 'SI' ? 'Visible' : 'Oculta' }}
+                                </span>
+                            </div>
+                            <p class="noticia-admin-meta">
+                                <span><i class="fa fa-user"></i> {{ $sl->user->email }}</span>
+                                <span><i class="fa fa-calendar"></i> {{ $sl->created_at->format('Y-m-d') }}</span>
+                            </p>
+                            <div class="noticia-admin-actions">
+                                <a class="btn btn-sm button-secondary-premium" href="{{ route('noticias-admin.edit',$sl) }}">Editar</a>
+                                <form action="{{ route('noticias-admin.destroy',$sl) }}" method="post" class="mb-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                    @endforeach
                 </div>
             </div>
             <div class="card-footer bg-transparent">
