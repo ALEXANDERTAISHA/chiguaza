@@ -19,7 +19,6 @@
             <table class="table table-hover mb-0">
                 <thead class="table-light">
                     <tr>
-                        <th class="text-center">Acción</th>
                         <th>Correo electrónico</th>
                         <th>Cédula</th>
                         <th>Nombre</th>
@@ -27,11 +26,19 @@
                         <th>Mensaje</th>
                         <th>Dependencia</th>
                         <th>Fecha</th>
+                        <th class="text-center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($qs as $q)
                     <tr>
+                        <td>{{ $q->email }}</td>
+                        <td>{{ $q->cedula }}</td>
+                        <td>{{ $q->apellidosnombres }}</td>
+                        <td>{{ $q->telefonocelular }}</td>
+                        <td>{{ Str::limit($q->quejasugerencia, 35) }}</td>
+                        <td>{{ $q->dependencia }}</td>
+                        <td>{{ $q->created_at->format('d/m/Y') }}</td>
                         <td class="text-center">
                             <a href="{{ route('admin.quejasSugerenciasVer',$q->id) }}" class="btn btn-sm button-secondary-premium">Ver</a>
                             <form action="{{ route('admin.quejasSugerenciasEliminar',$q->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Está seguro de eliminar este registro?')">
@@ -40,13 +47,6 @@
                                 <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                             </form>
                         </td>
-                        <td>{{ $q->email }}</td>
-                        <td>{{ $q->cedula }}</td>
-                        <td>{{ $q->apellidosnombres }}</td>
-                        <td>{{ $q->telefonocelular }}</td>
-                        <td>{{ Str::limit($q->quejasugerencia, 35) }}</td>
-                        <td>{{ $q->dependencia }}</td>
-                        <td>{{ $q->created_at->format('d/m/Y') }}</td>
                     </tr>
                     @endforeach
                 </tbody>
