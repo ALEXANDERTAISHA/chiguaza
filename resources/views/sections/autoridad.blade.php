@@ -305,12 +305,16 @@
         <div class="authority-premium-grid">
             <div class="authority-premium-media">
                 <div class="authority-premium-main-photo">
-                    <img src="{{ Storage::url($autoridad->foto) }}" alt="{{ $autoridad->nombres_completos }}">
+                    <a href="{{ Storage::url($autoridad->foto) }}" class="img-popup" data-group="101" aria-label="Ver imagen de {{ $autoridad->nombres_completos }}">
+                        <img src="{{ Storage::url($autoridad->foto) }}" alt="{{ $autoridad->nombres_completos }}">
+                    </a>
                 </div>
 
                 @if (!empty($autoridad->foto2))
                     <div class="authority-premium-secondary">
-                        <img src="{{ Storage::url($autoridad->foto2) }}" alt="{{ $autoridad->nombres_completos }}">
+                        <a href="{{ Storage::url($autoridad->foto2) }}" class="img-popup" data-group="101" aria-label="Ver imagen secundaria de {{ $autoridad->nombres_completos }}">
+                            <img src="{{ Storage::url($autoridad->foto2) }}" alt="{{ $autoridad->nombres_completos }}">
+                        </a>
                     </div>
                 @endif
 
