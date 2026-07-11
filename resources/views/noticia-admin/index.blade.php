@@ -3,13 +3,14 @@
 @section('content')
 <style>
     .noticia-admin-item {
-        grid-template-columns: 180px 1fr !important;
+        grid-template-columns: 120px 1fr auto !important;
+        align-items: center !important;
     }
 
     .noticia-admin-thumb {
-        height: 115px !important;
-        min-height: 115px !important;
-        max-height: 115px !important;
+        height: 72px !important;
+        min-height: 72px !important;
+        max-height: 72px !important;
     }
 
     .noticia-admin-thumb img {
@@ -19,15 +20,60 @@
         display: block !important;
     }
 
+    .noticia-admin-content {
+        gap: .2rem !important;
+    }
+
+    .noticia-admin-title {
+        margin: 0 !important;
+        font-size: .96rem !important;
+        line-height: 1.25 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .noticia-admin-meta {
+        font-size: .78rem !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        display: block !important;
+    }
+
+    .noticia-admin-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: .45rem !important;
+    }
+
+    .noticia-admin-status {
+        margin-right: .25rem !important;
+    }
+
+    .noticia-admin-actions {
+        margin-top: 0 !important;
+        gap: .35rem !important;
+    }
+
+    .noticia-admin-actions .btn {
+        padding: .35rem .55rem !important;
+        font-size: .78rem !important;
+    }
+
     @media (max-width: 575.98px) {
         .noticia-admin-item {
             grid-template-columns: 1fr !important;
         }
 
         .noticia-admin-thumb {
-            height: 130px !important;
-            min-height: 130px !important;
-            max-height: 130px !important;
+            height: 105px !important;
+            min-height: 105px !important;
+            max-height: 105px !important;
+        }
+
+        .noticia-admin-right {
+            justify-content: space-between;
         }
     }
 </style>
@@ -83,16 +129,16 @@
                             <img src="{{ Storage::url($sl->foto) }}" alt="{{ $sl->titulo }}" loading="lazy">
                         </div>
                         <div class="noticia-admin-content">
-                            <div class="noticia-admin-top">
-                                <h3 class="noticia-admin-title">{{ Str::limit($sl->titulo, 68, '...') }}</h3>
-                                <span class="noticia-admin-status {{ $sl->vista === 'SI' ? 'is-visible' : 'is-hidden' }}">
-                                    {{ $sl->vista === 'SI' ? 'Visible' : 'Oculta' }}
-                                </span>
-                            </div>
+                            <h3 class="noticia-admin-title">{{ Str::limit($sl->titulo, 88, '...') }}</h3>
                             <p class="noticia-admin-meta">
                                 <span><i class="fa fa-user"></i> {{ $sl->user->email }}</span>
                                 <span><i class="fa fa-calendar"></i> {{ $sl->created_at->format('Y-m-d') }}</span>
                             </p>
+                        </div>
+                        <div class="noticia-admin-right">
+                            <span class="noticia-admin-status {{ $sl->vista === 'SI' ? 'is-visible' : 'is-hidden' }}">
+                                {{ $sl->vista === 'SI' ? 'Visible' : 'Oculta' }}
+                            </span>
                             <div class="noticia-admin-actions">
                                 <a class="btn btn-sm button-secondary-premium" href="{{ route('noticias-admin.edit',$sl) }}">Editar</a>
                                 <form action="{{ route('noticias-admin.destroy',$sl) }}" method="post" class="mb-0">
