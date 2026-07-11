@@ -2,80 +2,118 @@
 
 @section('content')
 <style>
-    .noticia-admin-item {
-        grid-template-columns: 70px 1fr auto !important;
-        align-items: center !important;
+    /* Estilos para tarjetas de noticias */
+    .noticia-cards-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+        gap: 1.5rem !important;
     }
 
-    .noticia-admin-thumb {
-        height: 56px !important;
-        min-height: 56px !important;
-        max-height: 56px !important;
-        width: 70px !important;
+    .noticia-card {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        background: white !important;
     }
 
-    .noticia-admin-thumb img {
+    .noticia-card:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
+    }
+
+    .noticia-card-img {
+        width: 100% !important;
+        height: 180px !important;
+        overflow: hidden !important;
+        background: #f0f0f0 !important;
+    }
+
+    .noticia-card-img img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: contain !important;
+        object-fit: cover !important;
         display: block !important;
     }
 
-    .noticia-admin-content {
-        gap: .2rem !important;
-    }
-
-    .noticia-admin-title {
-        margin: 0 !important;
-        font-size: .96rem !important;
-        line-height: 1.25 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    .noticia-admin-meta {
-        font-size: .78rem !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        display: block !important;
-    }
-
-    .noticia-admin-right {
+    .noticia-card-body {
+        padding: 1rem !important;
         display: flex !important;
-        align-items: center !important;
-        gap: .35rem !important;
+        flex-direction: column !important;
+        flex: 1 !important;
     }
 
-    .noticia-admin-status {
-        margin-right: .25rem !important;
+    .noticia-card-title {
+        font-size: 1.05rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.4 !important;
+        color: #333 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
     }
 
-    .noticia-admin-actions {
-        margin-top: 0 !important;
-        gap: .25rem !important;
+    .noticia-card-meta {
+        font-size: 0.85rem !important;
+        color: #666 !important;
+        margin-bottom: 1rem !important;
     }
 
-    .noticia-admin-actions .btn {
-        padding: .35rem .45rem !important;
-        font-size: .75rem !important;
+    .noticia-card-meta span {
+        margin-right: 1rem !important;
+        display: inline-block !important;
     }
 
-    @media (max-width: 575.98px) {
-        .noticia-admin-item {
+    .noticia-card-status {
+        display: inline-block !important;
+        padding: 0.25rem 0.75rem !important;
+        border-radius: 4px !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .noticia-card-status.is-visible {
+        background-color: #d4edda !important;
+        color: #155724 !important;
+    }
+
+    .noticia-card-status.is-hidden {
+        background-color: #f8d7da !important;
+        color: #721c24 !important;
+    }
+
+    .noticia-card-actions {
+        display: flex !important;
+        gap: 0.5rem !important;
+        margin-top: auto !important;
+    }
+
+    .noticia-card-actions .btn {
+        flex: 1 !important;
+        padding: 0.5rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    @media (max-width: 768px) {
+        .noticia-cards-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+            gap: 1rem !important;
+        }
+
+        .noticia-card-img {
+            height: 150px !important;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .noticia-cards-grid {
             grid-template-columns: 1fr !important;
-        }
-
-        .noticia-admin-thumb {
-            height: 105px !important;
-            min-height: 105px !important;
-            max-height: 105px !important;
-            width: 100% !important;
-        }
-
-        .noticia-admin-right {
-            justify-content: space-between;
         }
     }
 </style>
@@ -93,8 +131,8 @@
 </div>
 
 <div class="row g-4">
-    <div class="col-xl-5">
-        <div class="card premium-card h-100">
+    <div class="col-12">
+        <div class="card premium-card">
             <div class="card-header">Nueva noticia</div>
             <div class="card-body">
                 <form action="{{ route('noticias-admin.store') }}" method="POST" enctype="multipart/form-data">
@@ -120,34 +158,32 @@
         </div>
     </div>
 
-    <div class="col-xl-7">
-        <div class="card premium-card h-100">
+    <div class="col-12">
+        <div class="card premium-card">
             <div class="card-header">Listado de noticias</div>
-            <div class="card-body noticia-admin-body">
-                <div class="noticia-admin-list">
+            <div class="card-body">
+                <div class="noticia-cards-grid">
                     @foreach ($noticias as $sl)
-                    <article class="noticia-admin-item">
-                        <div class="noticia-admin-thumb">
+                    <article class="noticia-card">
+                        <div class="noticia-card-img">
                             <img src="{{ $sl->foto_link }}" alt="{{ $sl->titulo }}" loading="lazy"
                                 onerror="this.onerror=null;this.src='{{ asset('assets/images/blog/news-1-1.jpg') }}';">
                         </div>
-                        <div class="noticia-admin-content">
-                            <h3 class="noticia-admin-title">{{ Str::limit($sl->titulo, 88, '...') }}</h3>
-                            <p class="noticia-admin-meta">
+                        <div class="noticia-card-body">
+                            <h3 class="noticia-card-title">{{ $sl->titulo }}</h3>
+                            <p class="noticia-card-meta">
                                 <span><i class="fa fa-user"></i> {{ $sl->user->email }}</span>
                                 <span><i class="fa fa-calendar"></i> {{ $sl->created_at->format('Y-m-d') }}</span>
                             </p>
-                        </div>
-                        <div class="noticia-admin-right">
-                            <span class="noticia-admin-status {{ $sl->vista === 'SI' ? 'is-visible' : 'is-hidden' }}">
+                            <span class="noticia-card-status {{ $sl->vista === 'SI' ? 'is-visible' : 'is-hidden' }}">
                                 {{ $sl->vista === 'SI' ? 'Visible' : 'Oculta' }}
                             </span>
-                            <div class="noticia-admin-actions">
+                            <div class="noticia-card-actions">
                                 <a class="btn btn-sm button-secondary-premium" href="{{ route('noticias-admin.edit',$sl) }}">Editar</a>
-                                <form action="{{ route('noticias-admin.destroy',$sl) }}" method="post" class="mb-0">
+                                <form action="{{ route('noticias-admin.destroy',$sl) }}" method="post" class="mb-0" style="flex: 1;">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                                    <button class="btn btn-danger btn-sm w-100">Eliminar</button>
                                 </form>
                             </div>
                         </div>
