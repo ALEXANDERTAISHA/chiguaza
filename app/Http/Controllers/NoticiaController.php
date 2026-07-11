@@ -30,14 +30,13 @@ class NoticiaController extends Controller
         $no=new Noticia();
         $no->titulo=$request->titulo_1;
         $no->detalle=$request->detalle;
-        $no->foto=$request->foto;
         $no->user_id=Auth::id();
-        
         $no->save();
 
         if($request->foto){
-            $path = $request->foto->storeAs('public/noticias', $no->id.'.'.$request->foto->extension());
-            $no->foto=$path;
+            $filename = $no->id.'.'.$request->foto->extension();
+            $request->foto->move(public_path('uploads/noticias'), $filename);
+            $no->foto = 'uploads/noticias/'.$filename;
             $no->save();
         }
         return redirect()->route('noticias-admin.index');
@@ -76,11 +75,12 @@ class NoticiaController extends Controller
         $no->save();
 
         if($request->foto){
-            if(Storage::exists($no->foto??'oko.pngx')){
-                Storage::delete($no->foto);
+            if($no->foto && file_exists(public_path($no->foto))){
+                @unlink(public_path($no->foto));
             }
-            $path = $request->foto->storeAs('public/noticias', $no->id.'.'.$request->foto->extension());
-            $no->foto=$path;
+            $filename = $no->id.'.'.$request->foto->extension();
+            $request->foto->move(public_path('uploads/noticias'), $filename);
+            $no->foto = 'uploads/noticias/'.$filename;
             $no->save();
         }
         return redirect()->route('noticias-admin.index');
@@ -93,10 +93,10 @@ class NoticiaController extends Controller
     {
         try {
             $no=Noticia::find($noticiaId);
-            $no->delete();
-            if(Storage::exists($no->foto??'oo.pbg')){
-                Storage::delete($no->foto);
+            if($no->foto && file_exists(public_path($no->foto))){
+                @unlink(public_path($no->foto));
             }
+            $no->delete();
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

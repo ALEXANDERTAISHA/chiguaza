@@ -28,12 +28,24 @@ class Noticia extends Model
             return $path;
         }
 
-        if (Str::startsWith($path, ['/storage/', 'storage/'])) {
-            return asset(ltrim($path, '/'));
+        // Rutas guardadas directamente en public/ (nuevo método)
+        if (Str::startsWith($path, 'uploads/')) {
+            return asset($path);
         }
 
+        // Rutas antiguas: public/noticias/ID.ext -> buscar en storage o public
         if (Str::startsWith($path, 'public/')) {
+            $subPath = Str::after($path, 'public/');
+            // Verificar si existe en public/storage/ (symlink activo)
+            if (file_exists(public_path('storage/' . $subPath))) {
+                return asset('storage/' . $subPath);
+            }
+            // Fallback: intentar con storage URL
             return Storage::url($path);
+        }
+
+        if (Str::startsWith($path, ['/storage/', 'storage/'])) {
+            return asset(ltrim($path, '/'));
         }
 
         $cleanPath = ltrim($path, '/');
@@ -46,6 +58,6 @@ class Noticia extends Model
             return asset('storage/' . $cleanPath);
         }
 
-        return Storage::url('public/' . $cleanPath);
+        return asset('assets/images/blog/news-1-1.jpg');
     }
 }
