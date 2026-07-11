@@ -37,8 +37,8 @@
             <div class="news-detail-row">
                 <div class="news-detail-left">
                     <div class="img-wrap">
-                        <a href="{{ Storage::url($noticia->foto) }}" class="news-detail-lightbox">
-                            <img src="{{ Storage::url($noticia->foto) }}" alt="{{ $noticia->titulo }}">
+                        <a href="{{ $noticia->foto_link }}" class="news-detail-lightbox">
+                            <img src="{{ $noticia->foto_link }}" alt="{{ $noticia->titulo }}">
                         </a>
                     </div>
                     <div style="margin-top:12px;">

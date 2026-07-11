@@ -46,7 +46,7 @@
                         <div class="news-one__single clickable-card" data-url="{{ route('noticiasDetalle',$no->id) }}">
                             <div class="news-one__img-box">
                                 <div class="news-one__img">
-                                    <img src="{{ Storage::url($no->foto) }}" alt="{{ $no->titulo }}">
+                                    <img src="{{ $no->foto_link }}" alt="{{ $no->titulo }}">
                                 </div>
                                 <div class="news-one__date">
                                     <p>{{ $no->created_at->format('Y-m-d') }}</p>

@@ -148,8 +148,8 @@
                 <div class="news-one__single" style="cursor:pointer;" onclick="window.location='{{ route('noticiasDetalle',$no->id) }}'">
                     <div class="news-one__img-box">
                         <div class="news-one__img">
-                            <a href="{{ Storage::url($no->foto) }}" class="news-lightbox">
-                                <img src="{{ Storage::url($no->foto) }}" alt="">
+                            <a href="{{ $no->foto_link }}" class="news-lightbox">
+                                <img src="{{ $no->foto_link }}" alt="">
                             </a>
                         </div>
                         <div class="news-one__date">

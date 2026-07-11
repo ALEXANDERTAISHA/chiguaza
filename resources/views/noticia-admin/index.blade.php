@@ -126,7 +126,7 @@
                     @foreach ($noticias as $sl)
                     <article class="noticia-admin-item">
                         <div class="noticia-admin-thumb">
-                            <img src="{{ Storage::url($sl->foto) }}" alt="{{ $sl->titulo }}" loading="lazy">
+                            <img src="{{ $sl->foto_link }}" alt="{{ $sl->titulo }}" loading="lazy">
                         </div>
                         <div class="noticia-admin-content">
                             <h3 class="noticia-admin-title">{{ Str::limit($sl->titulo, 88, '...') }}</h3>

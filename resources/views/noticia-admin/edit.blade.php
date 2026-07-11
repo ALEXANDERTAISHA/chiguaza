@@ -29,8 +29,8 @@
                             <input type="file" name="foto" class="form-control-file" id="foto">
                             <i>Formato: Anchura=350,Altura=250|.png .jpg .jpeg</i>
                             <br>
-                            <a href="{{ Storage::url($noticia->foto) }}">
-                                <img src="{{ Storage::url($noticia->foto) }}" alt="" width="45px">
+                            <a href="{{ $noticia->foto_link }}">
+                                <img src="{{ $noticia->foto_link }}" alt="" width="45px">
                             </a>
                         </div>
                         
