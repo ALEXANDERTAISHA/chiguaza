@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::get('eliminarArchivo/{id}', [CarpetaController::class,'eliminarArchivo'])->name('eliminarArchivo');
     Route::get('admin-quejas-sugerencias', [QuejasSugerenciasController::class,'index'])->name('admin.quejasSugerencias');
     Route::get('admin-quejas-sugerencias/ver/{id}', [QuejasSugerenciasController::class,'ver'])->name('admin.quejasSugerenciasVer');
+    Route::delete('admin-quejas-sugerencias/eliminar/{id}', [QuejasSugerenciasController::class,'destroy'])->name('admin.quejasSugerenciasEliminar');
 
 
 

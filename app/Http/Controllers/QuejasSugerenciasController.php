@@ -21,4 +21,9 @@ class QuejasSugerenciasController extends Controller
         );
         return view('quejas-sugerencias.ver',$data);
     }
+
+    public function destroy($id) {
+        QuejaSugerencia::findOrFail($id)->delete();
+        return redirect()->route('admin.quejasSugerencias')->with('success', 'Registro eliminado correctamente.');
+    }
 }

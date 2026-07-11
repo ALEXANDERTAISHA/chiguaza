@@ -34,6 +34,11 @@
                     <tr>
                         <td class="text-center">
                             <a href="{{ route('admin.quejasSugerenciasVer',$q->id) }}" class="btn btn-sm button-secondary-premium">Ver</a>
+                            <form action="{{ route('admin.quejasSugerenciasEliminar',$q->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Está seguro de eliminar este registro?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            </form>
                         </td>
                         <td>{{ $q->email }}</td>
                         <td>{{ $q->cedula }}</td>
