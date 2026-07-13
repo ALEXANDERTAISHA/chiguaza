@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,6 +64,19 @@ Route::get('/noticias',[EstaticasController::class,'noticias'])->name('noticias'
 Route::get('/detalle-de-noticia/{id}',[EstaticasController::class,'noticiasDetalle'])->name('noticiasDetalle');
 Route::get('/contactos',[EstaticasController::class,'contactos'])->name('contactos');
 Route::post('/contactos-enviar',[EstaticasController::class,'contactoEnviar'])->name('contactoEnviar');
+
+// Fallback for public storage files when the public/storage symlink is missing.
+Route::get('/storage/{path}', function (string $path) {
+    $fullPath = storage_path('app/public/' . $path);
+
+    if (!is_file($fullPath)) {
+        abort(404);
+    }
+
+    return response()->file($fullPath, [
+        'Cache-Control' => 'public, max-age=31536000',
+    ]);
+})->where('path', '.*');
 
 
 
